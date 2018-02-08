@@ -1,0 +1,108 @@
+create table customers (
+customerID VarChar2(15) NOT NULL,
+LicensePlate VarChar2(15),
+Address VarChar2(80),
+ZIPCode VarChar2(10),
+NumberOfFamilyMembers Number(20),
+ContactNumber Number(10),
+FirstName varchar2(18),
+LastName varchar2(18),
+NumberOfVisitsThisSeason Number(3),
+CONSTRAINT customers_pk PRIMARY KEY (CustomerID));
+
+
+create table CustomerBalance(
+customerID VarChar2(15) NOT NULL,
+datee varchar2(10),
+transactionID VarChar2(8),
+PreviousCardBalance Number(10),
+AddedAmount Number(10),
+BalanceAfterAddedMoney Number(10),
+LastAddedDate VarChar2(10),
+CONSTRAINT CustomerBalance_pk PRIMARY KEY (TransactionID),
+CONSTRAINT CustomerBalance_fk FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID));
+
+
+create table Visitors(
+DateVisited VarChar2(10),
+WeekNumber VarChar2(2),
+CustomerID varchar2(15),
+NumberOfFamilyMembersVisited Number(2),
+CONSTRAINT Visitors_pk PRIMARY KEY (CustomerID),
+CONSTRAINT Visitors_fk FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID));
+
+
+create table RestaurentSales(
+RestaurentNumber varchar2(10) NOT NULL,
+Datee varchar2(10),
+OrderNumber Number(5),
+TellersEMPLID Number(8),
+ORderDetails VarChar2(200),
+OrderBill Number(10),
+CustomerID VarChar2(15) NOT NULL,
+CONSTRAINT RestaurentSales_pk PRIMARY KEY (RestaurentNumber, Datee, OrderNumber),
+CONSTRAINT RestaurentSales_fk FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID));
+
+
+create table Restaurents(
+RestaurentNumber VarChar2(10),
+RestaurentName VarChar2(30),
+Constraint Restaurents_pk PRIMARY KEY (RestaurentNumber));
+
+
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC982', 'CXY-0591', '797 Glendale Lake', '34821-9247', 5, 9123458256, 'Rick', 'Clark', 3);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC782', 'CZI-9751', '645 TaraLake', '15487-9654', 5, 9123148657, 'Jasmine', 'Naughton', 2);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC927', 'YZI-5193', '965 Ocean Avenue', '98745-6468', 5, 9129465831, 'Jonathan', 'Matamor	os', 6);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC215', 'ZA-3113', '585 CharlesLak River Road', '18546-3118', 5, 9124856241, 'Emilia', 'Clark', 3);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC478', 'CA-6542', '999 Infinity Bound', '47598-2644', 3, 912466846, 'Olasubomi', 'Efuniyi', 2);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC614', 'HAJ-0091', '002 Nautica Avenue', '35478-3148', 6, 9121458579, 'Jodenna', 'Simposon', 5);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC547', 'GOS-9201', '854 1st Ave', '41785-3652', 4, 9126589651, 'Ismail', 'Khan', 9);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC177', 'YFD-1231', '931 AbraKaDabra Avenue', '65231-1254', 4, 9124512458, 'Adil', 'Waqar', 4);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC365', 'AAA-555', '931 Hoolwood Avenue', '21547-8547', 2, 3475864754, 'Emma', 'Stone', 5);
+INSERT INTO Customers (CustomerID, LicensePlate, Address, ZIPCode, NumberOfFamilyMembers, ContactNumber, FirstName, LastName, NumberOfVisitsThisSeason) VALUES ('ABC458', 'CBC-1475', '1012 Oceanview Avenue', '54712-9237', 4, 9124758965, 'Morgan', 'Freeman', 6);
+
+
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC458', 'ABCD0927', 50, 150, 200, '06/20/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC365', 'CDAD5477', 20, 50, 70, '06/21/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC177', 'SCVD6517', 40, 50, 90, '06/20/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC547', 'AJCA4624', 90, 50, 140, '06/22/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC614', 'AICA9844', 20, 100, 120, '06/23/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC478', 'AKXN4175', 80, 60, 140, '06/21/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC215', 'FARX4153', 90, 100, 190, '06/23/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC927', 'AGXH2145', 80, 70, 150, '06/25/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC782', 'YDUS5474', 50, 300, 350, '06/25/2017');
+INSERT INTO CustomerBalance (CustomerID, transactionID, PreviousCardBalance, AddedAmount, BalanceAfterAddedMoney, LastAddedDate) VALUES ('ABC982', 'SYAB8584', 50, 300, 350, '06/26/2017');
+
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/26/2017', '1', 'ABC982', 3);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/25/2017', '1', 'ABC782', 5);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/25/2017', '1', 'ABC927', 4);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/23/2017', '1', 'ABC215', 8);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/21/2017', '1', 'ABC478', 6);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/23/2017', '1', 'ABC614', 4);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/22/2017', '1', 'ABC547', 2);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/20/2017', '1', 'ABC177', 2);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/21/2017', '1', 'ABC365', 2);
+INSERT INTO Visitors (DateVisited, WeekNumber, CustomerID, NumberOfFamilyMembersVisited) VALUES ('06/20/2017', '1', 'ABC458', 2);
+
+INSERT INTO Restaurents (RestaurentNumber, RestaurentName) VALUES (1, 'Pizza World');
+INSERT INTO Restaurents (RestaurentNumber, RestaurentName) VALUES (2, 'Dinner Land');
+INSERT INTO Restaurents (RestaurentNumber, RestaurentName) VALUES (3, 'Ice Cream Palace');
+INSERT INTO Restaurents (RestaurentNumber, RestaurentName) VALUES (4, 'Dinner Delight');
+INSERT INTO Restaurents (RestaurentNumber, RestaurentName) VALUES (5, 'Pretzel and Hot Dog Stands');
+
+INSERT INTO RestaurentSales (RestaurentNumber, Datee, OrderNumber, TellersEmplID, OrderDetails, OrderBill, CustomerID) VALUES (2, '06/21/2017', 54, 54852418, 'Fried Chicken Sandwich x4', 25, 'ABC547');
+INSERT INTO RestaurentSales (RestaurentNumber, Datee, OrderNumber, TellersEmplID, OrderDetails, OrderBill, CustomerID) VALUES (2, '06/21/2017', 74, 21456565, 'Grilled Chicken Sandwich x6', 30, 'ABC614');
+INSERT INTO RestaurentSales (RestaurentNumber, Datee, OrderNumber, TellersEmplID, OrderDetails, OrderBill, CustomerID) VALUES (3, '06/22/2017', 42, 59865623, 'Sundaes x2', 5, 'ABC927');
+INSERT INTO RestaurentSales (RestaurentNumber, Datee, OrderNumber, TellersEmplID, OrderDetails, OrderBill, CustomerID) VALUES (5, '06/22/2017', 12, 15213848, 'Regular Hot Dogs x4', 12, 'ABC177');
+INSERT INTO RestaurentSales (RestaurentNumber, Datee, OrderNumber, TellersEmplID, OrderDetails, OrderBill, CustomerID) VALUES (1, '06/21/2017', 33, 44684684, 'Pepparoni Slices x3', 9, 'ABC365');
+
+select firstname, lastname, orderdetails, customers.customerid
+from customers, restaurentsales where restaurentsales.customerid = customers.customerid;
+
+select sum(orderbill) as totalsales from restaurentsales;
+
+select customers.firstname, customers.lastname, orderbill, orderdetails from customers, restaurentsales where customers.customerid = restaurentsales.customerid;
+
+select sum(numberoffamilymembersvisited)as totalvisitors, datevisited from visitors group by datevisited;
+
+select datee, sum(orderbill)as totalsales from restaurentsales group by datee;

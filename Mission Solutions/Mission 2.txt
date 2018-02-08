@@ -1,0 +1,241 @@
+CREATE TABLE SuperFunPark (
+NameOfDepartment VarChar2(40),
+NumberOfEmployees Number(4),
+FullTimeEmployees Number(4),
+PartTimeEmployees Number(4),
+Manager VarChar2(40),
+ManagersEmplID Number(8),
+CONSTRAINT SuperFunPark_pk PRIMARY KEY (NameOfDepartment));
+
+
+CREATE TABLE Employees(
+EmplID number(8),
+Status VarChar2(10),
+Department VarChar2(40),
+Designation VarChar2(40),
+HiringDate VarChar2(10),
+PromotionsSinceHired VarChar2(3),
+Salary VarChar2(20),
+HealthCarePlan VarChar2(20),
+RetirementPackage VarChar2(20),
+SocialSecurityNumber Number(9),
+DateOfBirth VarChar2(10),
+Address VarChar2(40),
+CONSTRAINT Employees_pk PRIMARY KEY (EmplID),
+CONSTRAINT Employees_fk FOREIGN KEY (Department) REFERENCES SuperFunPark (NameOfDepartment));
+
+
+CREATE TABLE BuildingAndGrounds(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT BuildingandGrounds_pk PRIMARY KEY (EmplID),
+CONSTRAINT BuildingandGrounds_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE HumanResources(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT HumanResources_pk PRIMARY KEY (EmplID),
+CONSTRAINT HumanResources_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE AccountingAndPurchasing(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT AccountingAndPurchasing_pk PRIMARY KEY (EmplID),
+CONSTRAINT AccountingAndPurchasing_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE Marketing(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT Marketing_pk PRIMARY KEY (EmplID),
+CONSTRAINT Marketing_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE EventsAndScheduling(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT EventsAndScheduling_pk PRIMARY KEY (EmplID),
+CONSTRAINT EventsAndScheduling_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE WaterParkManagement(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT WaterParkManagement_pk PRIMARY KEY (EmplID),
+CONSTRAINT WaterParkManagement_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+
+CREATE TABLE AmusementParkManagement(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT AmusementParkManagement_pk PRIMARY KEY (EmplID),
+CONSTRAINT AmusementParkManagement_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE FoodManagement(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT FoodManagement_pk PRIMARY KEY (EmplID),
+CONSTRAINT FoodManagement_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE EmergencyResponse(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT EmergencyResponse_pk PRIMARY KEY (EmplID),
+CONSTRAINT EmergencyResponse_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE TicketingAndCrowdManagement(
+EmplID number(8),
+FirstName varchar2(20),
+LastName varchar2(20),
+Status varchar2(10),
+Responsibilities varchar2(150),
+ManagersEmplID number(8),
+CONSTRAINT TicketingAndCrowdManagement_pk PRIMARY KEY (EmplID),
+CONSTRAINT TicketingAndCrowdManagement_fk FOREIGN KEY (EmplID) REFERENCES Employees(EmplID));
+
+
+CREATE TABLE EmployeeHistory(
+EmplID Number(8),
+NumberOfHoursPerWeek number(2),
+NumberOfHoursWorked number(2),
+SickDays number(1),
+WeekNumber Number(2),
+CONSTRAINT EmployeeHistory_pk PRIMARY KEY (EmplID, WeekNumber),
+CONSTRAINT EmployeeHistory_fk FOREIGN KEY (EmplID) REFERENCES Employees (EmplID));
+
+CREATE TABLE EmployeeTImeline(
+Datee VarChar2(10),
+EmplID Number(8),
+CheckIN VarChar2(10),
+CheckOUT VarChar2(10),
+HoursWorked Number(2),
+MealTime VarChar2(5),
+SickDay VarChar2(3),
+CONSTRAINT EmployeeTimeline_pk PRIMARY KEY (EmplID, Datee),
+CONSTRAINT EmployeeTimeline_fk FOREIGN KEY (EmplID) references Employees (EmplID));
+
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Building and Grounds', 10, 8, 2, 'Emilia Clark', 54246395);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Food Management', 15, 11, 4, 'Hugh Grant', 36214861);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Water Park Management', 25, 18, 7, 'Martin Freeman', 15435166);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Human Resources', 17, 14, 3, 'Kyle Chandler', 53187531);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Accounting and Purchasing', 9, 8, 1, 'Myles Kennedy', 17565437);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Marketing', 6, 6, 0, 'David Draiman', 35418649);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Events and Scheduling', 13, 10, 3, 'Richar Wright', 85293941);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Amusement Park Management', 30, 21, 9, 'Joe Biden', 31846654);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Emergency Response/Public Safety', 33, 25, 7, 'Don Bradman', 32548195);
+INSERT INTO SuperFunPark (NameOfDepartment, NumberOfEmployees, FullTimeEmployees, PartTimeEmployees, Manager, ManagersEmplID) VALUES ('Ticketing and Crowd Management', 30, 20, 10, 'Michelle Obama', 54756595);
+
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (26514884, 'Full Time', 'Building and Grounds', 'Regular', '02/05/2017', 1, '12/hour', 'Basic', 'None', 687645498, '04/22/1975', '5567 Sunbath Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (22686484, 'Full Time', 'Food Management', 'Assistant Manager', '05/10/2016', 3, '15/hour', 'Basic', 'None', 362148619, '05/21/1980', '937 Sunrise Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (48693218, 'Full Time', 'Water Park Management', 'Vice Manager', '02/05/2014', 5, '20/hour', 'Premium', 'None', 974516552, '09/29/1977', '5567 Sun not bath Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (29318294, 'Full Time', 'Human Resources', 'Regular', '05/08/2016', 1, '11/hour', 'None', 'None', 486453279, '12/02/1995', '3367 No Sun Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (35868468, 'Full Time', 'Accounting and Purchasing', 'Regular', '05/05/2016', 2, '13/hour', 'None', 'None', 653253198, '01/12/1965', '937 Sunset Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (54684398, 'Full Time', 'Marketing', 'Regular', '02/05/2017', 1, '12/hour', 'Basic', 'None', 654665498, '04/22/1980', '437 Sudip Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (65391185, 'Full Time', 'Events and Scheduling', 'Regular', '09/09/2016', 1, '18/hour', 'Premium', 'Basic', 699631565, '03/12/1992', '089 Philadelphia Ave');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (79234458, 'Full Time', 'Amusement Park Management', 'Manager', '05/05/2014', 4, '45/hour', 'Premium', 'Premium', 884366519, '12/01/1985', '88 Abra ka Dabra Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (33652255, 'Full Time', 'Emergency Response/Public Safety', 'Junior Manager', '09/05/2015', 4, '35/hour', 'Premium', 'Premium', 195534898, '09/12/1970', '937 Utica Avenue');
+INSERT INTO Employees (EmplID, Status, Department, Designation, HiringDate, PromotionsSinceHired, Salary, HealthCarePlan, RetirementPackage, SocialSecurityNumber, DateOfBirth, Address) VALUES (98562214, 'Full Time', 'Ticketing and Crowd Management', 'Manager', '05/09/2015', 5, '40/hour', 'Premium', 'Premium', 698214738, '12/12/1974', '937 Nostrand Avenue');
+
+INSERT INTO BuildingAndGrounds (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (26514884, 'Kenny', 'OBrian', 'Full Time', 'Maintanence', 54246395);
+INSERT INTO FoodManagement (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (22686484, 'Nathan', 'McCullum', 'Full Time', 'Teller', 36214861);
+INSERT INTO WaterParkManagement (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (48693218, 'Julie', 'Richards', 'Full Time', 'Manage', 15435166);
+INSERT INTO HumanResources (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (29318294, 'Stephen', 'Colbert', 'Full Time', 'Recruting Officer', 53187531);
+INSERT INTO AccountingAndPurchasing (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (35868468, 'Hassan', 'Minahj', 'Full Time', 'Auditor', 17565437);
+INSERT INTO Marketing (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (54684398, 'Bradd', 'Hogg', 'Full Time', 'Strategist', 35418649);
+INSERT INTO EventsAndScheduling (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (65391185, 'Lady', 'Gaga', 'Full Time', 'Future Events Coordinator', 85293941);
+INSERT INTO AmusementParkManagement (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (79234458, 'Brett', 'Sims', 'Full Time', 'Manager', 31846654);
+INSERT INTO EmergencyResponse (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (33652255, 'Sally', 'Yates', 'Full Time', 'Junior Manager', 32548195);
+INSERT INTO TicketingAndCrowdManagement (EmplID, FirstName, LastName, Status, Responsibilities, ManagersEmplID) VALUES (98562214, 'Bernie', 'Sanders', 'Full Time', 'Manager', 54756595);
+
+
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (26514884, 35, 40, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (26514884, 35, 32, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (22686484, 35, 42, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (22686484, 40, 49, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (48693218, 45, 55, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (48693218, 37, 35, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (29318294, 40, 42, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (29318294, 40, 50, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (35868468, 40, 35, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (35868468, 35, 38, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (54684398, 35, 35, 1, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (54684398, 40, 43, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (79234458, 35, 30, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (79234458, 35, 39, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (65391185, 35, 44, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (65391185, 35, 41, 0, 2);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (98562214, 35, 39, 0, 1);
+INSERT INTO EmployeeHistory (EmplID, NumberOfHoursPerWeek, NumberOfHoursWorked, SickDays, WeekNumber) VALUES (98562214, 35, 32, 0, 2);
+
+
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 26514884, '08:00', '05:15', 9, '00:15', 'No');  
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 26514884, '08:00', '05:30', 9, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 22686484, '08:00', '05:15', 9, '00:15', 'No');  
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 22686484, '08:00', '05:35', 9, '00:35', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 48693218, '10:00', '05:00', 8, '01:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 48693218, '09:00', '04:30', 7, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 29318294, '11:00', '09:00', 9, '01:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 29318294, '07:00', '03:00', 9, '01:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 35868468, '10:30', '06:30', 8, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 35868468, '07:15', '05:00', 9, '00:45', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 54684398, '06:00', '04:30', 10, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 54684398, '06:00', '05:30', 11, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 79234458, '08:00', '08:00', 11, '01:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 79234458, '08:00', '02:00', 6, '00:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 65391185, '10:00', '08:00', 9, '01:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 65391185, '10:00', '08:30', 10, '00:30', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/08/17', 98562214, '08:00', '03:00', 7, '00:00', 'No');
+INSERT INTO EmployeeTimeline (Datee, EmplID, CheckIN, CheckOUT, HoursWorked, MealTime, SickDay) VALUES ('05/09/17', 98562214, '08:00', '09:00', 11, '01:00', 'No');
+
+
+select FirstName, LastName, buildingandgrounds.EmplID
+from buildingandgrounds, superfunpark WHERE buildingandgrounds.managersemplid = superfunpark.managersemplid;
+
+select employees.department, employees.emplid, employees.status, employees.salary from employees, superfunpark where superfunpark.nameofdepartment = employees.department;
+
+select numberofhoursworked, weeknumber, emplid from employeehistory where numberofhoursworked >= 35;
+
+  
+
